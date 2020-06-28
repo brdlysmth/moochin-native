@@ -58,7 +58,7 @@ function HomeNavigator() {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'Library' }}
+        options={{ headerTitle: 'Moochin' }}
       />
     </HomeStack.Navigator>
   );
@@ -72,7 +72,7 @@ function LibraryNavigator() {
       <LibraryStack.Screen
         name="LibraryScreen"
         component={LibraryScreen}
-        options={{ headerTitle: 'Library' }}
+        options={{ headerTitle: 'Moochin' }}
       />
     </LibraryStack.Navigator>
   );
