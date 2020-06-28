@@ -7,7 +7,13 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import LibraryScreen from '../screens/LibraryScreen';
+import { 
+  BottomTabParamList, 
+  TabOneParamList, 
+  TabTwoParamList,
+  LibraryParamList
+ } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -18,6 +24,13 @@ export default function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      <BottomTab.Screen
+        name="Library"
+        component={LibraryNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
       <BottomTab.Screen
         name="TabOne"
         component={TabOneNavigator}
@@ -69,5 +82,19 @@ function TabTwoNavigator() {
         options={{ headerTitle: 'Tab Two Title' }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const LibraryStack = createStackNavigator<LibraryParamList>();
+
+function LibraryNavigator() {
+  return (
+    <LibraryStack.Navigator>
+      <LibraryStack.Screen
+        name="LibraryScreen"
+        component={LibraryScreen}
+        options={{ headerTitle: 'Library' }}
+      />
+    </LibraryStack.Navigator>
   );
 }
