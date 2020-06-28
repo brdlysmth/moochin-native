@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import Firebase from "firebase";
+import firebaseConfig from './config';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
@@ -21,3 +23,6 @@ export default function App() {
     );
   }
 }
+
+const app = Firebase.initializeApp(firebaseConfig);
+export const db = app.database();
