@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-material-ui';
 
 import LibraryScreenInfo from '../components/LibraryScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -10,6 +11,12 @@ export default function LibraryScreen() {
       <Text style={styles.title}> Library </Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <LibraryScreenInfo path="/screens/LibraryScreen.tsx" />
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <Button 
+        text="Add Book"
+        raised={true}  
+        primary={false}
+        /> 
     </View>
   );
 }
