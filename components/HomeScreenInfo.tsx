@@ -14,7 +14,7 @@ export default function HomeScreenInfo({ path }: { path: string }) {
           style={styles.getStartedText}
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)">
-          Welcome to your Moochin' Library
+          Time to Mooch
         </Text>
 
         {/* <View
@@ -24,13 +24,6 @@ export default function HomeScreenInfo({ path }: { path: string }) {
           <MonoText>{path}</MonoText>
         </View> */}
 
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)">
-          This is where you will catalog the books you have available to you. 
-          Your public list is for your friends, and your private list is just for you.
-        </Text>
       </View>
 
       {/* <View style={styles.helpContainer}>
