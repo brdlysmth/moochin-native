@@ -6,19 +6,22 @@ import LibraryScreenInfo from '../components/LibraryScreenInfo';
 import { Text, View } from '../components/Themed';
 
 export default function LibraryScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}> Library </Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <LibraryScreenInfo path="/screens/LibraryScreen.tsx" />
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Button 
-        text="Add Book"
-        raised={true}  
-        primary={false}
-        /> 
-    </View>
-  );
+
+    return (
+        <View style={styles.container}>
+        <Text style={styles.title}> Library </Text>
+        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <LibraryScreenInfo path="/screens/LibraryScreen.tsx" />
+        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <Button 
+            text="Add Book"
+            raised={true}  
+            primary={false}
+            // TODO: wire up Formik form onPress
+            /> 
+        
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
