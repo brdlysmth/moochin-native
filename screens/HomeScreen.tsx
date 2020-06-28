@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
-import LibraryScreenInfo from '../components/LibraryScreenInfo';
+import HomeScreenInfo from '../components/HomeScreenInfo';
 import { Text, View } from '../components/Themed';
 
-export default function LibraryScreen() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}> Library </Text>
+      <Text style={styles.title}> Home </Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <LibraryScreenInfo path="/screens/LibraryScreen.tsx" />
+      <HomeScreenInfo path="/screens/HomeScreen.tsx" />
     </View>
   );
 }
