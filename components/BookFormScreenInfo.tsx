@@ -1,9 +1,10 @@
+import * as React from 'react'; 
 import { Formik } from 'formik';
 import { Text } from './Themed';
 import { TextInput, View } from 'react-native';
 import { Button } from 'react-native-material-ui';
 
-export default function FormScreenInfo({ path }: { path: string }) {
+export default function BookFormScreenInfo({ path }: { path: string }) {
     return (
         <Formik
         initialValues={{ email: '' }}

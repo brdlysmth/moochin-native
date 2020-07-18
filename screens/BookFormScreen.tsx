@@ -1,33 +1,43 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import { Button } from 'react-native-material-ui';
+import { TextInput, StyleSheet, Button } from 'react-native';
 
 import firebase from 'firebase';
 import { Formik, Field, Form } from 'formik';
+import Modal from 'react-native-modal';
 
-import LibraryScreenInfo from '../components/LibraryScreenInfo';
+import BookFormScreenInfo from '../components/BookFormScreenInfo';
 import { Text, View } from '../components/Themed';
 import Navigation from '../navigation/index';
 
-export default function LibraryScreen() {
+export default function BookFormScreen() {
 
+    // TODO: ditching form, going straight to adding photo book
+    // s3 bucket
+    // url to firebase 
+    // yarn add react-native-photo-upload
+
+    const [isModalVisible, setModalVisible] = React.useState(false);
+  
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
 
     return (
         <View style={styles.container}>
-        <Text style={styles.title}> Library </Text>
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <LibraryScreenInfo path="/screens/LibraryScreen.tsx" />
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <Button 
-            text="Add Book"
-            raised={true}  
-            primary={false}
-            // TODO: wire up Formik form onPress
-                
-            // TODO: 
-            // - on press renders 
-            /> 
-        
+            <Text style={styles.title}> 
+                Add Book 
+            </Text>
+
+            <Button title="Show modal" onPress={toggleModal} />
+
+            <Modal isVisible={ isModalVisible }>
+                <View style={{ flex: 1 }}>
+                    <Text>I am the modal content!</Text>
+                    <Button title="Hide modal" onPress={toggleModal} />
+                </View>
+
+            </Modal>
+
         </View>
     );
   }
@@ -37,6 +47,7 @@ export default function LibraryScreen() {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
+      backgroundColor: 'white',
     },
     title: {
       fontSize: 20,
