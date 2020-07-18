@@ -18,12 +18,15 @@ export default function BookFormScreen() {
     // yarn add react-native-photo-upload
 
     const [isModalVisible, setModalVisible] = React.useState(false);
-    const [value, onChangeText] = React.useState('Useless Placeholder');
+    // const [value, onChangeText] = React.useState('Book Name');
+    const [value, onChangeText] = React.useState('');
 
-    const addBook = async ( value: any ) => {
+    const addBook = async ( name: string, title: string, author: string ) => {
         await db.ref('/books').push({
             new: 'true',
-            name: value,
+            name: name,
+            title: title,
+            author: author,
         })
     }
   
@@ -49,19 +52,11 @@ export default function BookFormScreen() {
                     <Text>
                         Love to see some books getting added.
                     </Text>
-                    
-                    <TextInput
-                        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                        onChangeText={text => onChangeText(text)}
-                        value={value}
-                        placeholder='Enter email... '
-                        onSubmitEditing={() => addBook(value)}
-                        >
+                
 
-                    </TextInput>
 
                     <Button 
-                        title="Hide modal" 
+                        title="Exit" 
                         onPress={toggleModal} 
                         />
 
@@ -79,7 +74,7 @@ container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
 },
 title: {
     fontSize: 20,
