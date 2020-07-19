@@ -1,14 +1,12 @@
-import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-material-ui';
 
 import LibraryScreenInfo from '../components/LibraryScreenInfo';
 import { Text, View } from '../components/Themed';
-import Navigation from '../navigation';
-import { RootStackParamList } from '../types';
 import { db } from '../App';
 import Modal from 'react-native-modal';
+import { Formik } from 'formik';
 
 
 
@@ -18,6 +16,9 @@ export default function LibraryScreen() {
   // s3 bucket
   // url to firebase 
   // yarn add react-native-photo-upload
+
+
+  // TODO: delete the BookForm wiring, no longer needed
 
   const [isModalVisible, setModalVisible] = React.useState(false);
   // const [value, onChangeText] = React.useState('Book Name');
@@ -46,11 +47,6 @@ export default function LibraryScreen() {
           text="Add Book"
           raised={true}  
           primary={false}
-          // TODO: wire up Formik form onPress
-
-          // TODO: 
-          // - on press renders 
-          // onPress={() => navigation.navigate('BookForm')}
           onPress={toggleModal}
           /> 
 
@@ -64,7 +60,50 @@ export default function LibraryScreen() {
               <Text>
                   Love to see some books getting added.
               </Text>
-    
+
+              <Formik
+                initialValues={{ name: '', title: '', author: ''}}
+                onSubmit={values => addBook(
+                  values.name,
+                  values.title,
+                  values.author,
+                  )
+                }
+                > 
+                {({
+                  handleChange, handleBlur, handleSubmit, values
+                }) => (
+
+                  <View style={styles.formik}>
+                    <TextInput
+                      placeholder="Name"
+                      onChangeText={handleChange('name')}
+                      onBlur={handleBlur('name')}
+                      value={values.name}
+                      />
+                    <TextInput
+                      placeholder="Title"
+                      onChangeText={handleChange('title')}
+                      onBlur={handleBlur('title')}
+                      value={values.title}
+                      />
+                    <TextInput
+                      placeholder="Author"
+                      onChangeText={handleChange('author')}
+                      onBlur={handleBlur('author')}
+                      value={values.author}
+                      />
+                    <Button 
+                      onPress={handleSubmit} 
+                      text='Submit'
+                      raised={true}  
+                      primary={false}
+                      />
+                  </View>
+                )}
+
+              </Formik>
+
               <Button 
                   text="Exit" 
                   raised={true}  
@@ -94,5 +133,14 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: '80%',
+  },
+  formik: {
+    height: 100,
+    width: 100,
+    margin: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'black',
+    // padding: 100
   },
 });
