@@ -11,43 +11,50 @@ import { Formik } from 'formik';
 
 export default function LoginScreen() {
 
-  const [isModalVisible, setModalVisible] = React.useState(false);
-  // const [value, onChangeText] = React.useState('Book Name');
-  const [value, onChangeText] = React.useState('');
+	const [isModalVisible, setModalVisible] = React.useState(false);
+	// const [value, onChangeText] = React.useState('Book Name');
+	const [value, onChangeText] = React.useState('');
 
-  const addBook = async ( name: string, title: string ) => {
-      await db.ref('/books').push({
-          new: 'true',
-          name: name,
-          title: title,
-      })
-  }
+	const addBook = async ( name: string, title: string ) => {
+		await db.ref('/books').push({
+			new: 'true',
+			name: name,
+			title: title,
+		})
+	}
 
-  const toggleModal = () => {
-      setModalVisible(!isModalVisible);
-  };
+	let isLogin: boolean = false;
 
-  return (
-        <View style={styles.container}>
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <Text style={styles.title}> Moochin </Text>
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-        <Button 
-          text="Login"
-          raised={true}  
-          primary={false}
-          onPress={toggleModal}
-          /> 
+	const toggleLoginModal = () => {
+		isLogin = !isLogin
+		setModalVisible(!isModalVisible);
+	};
 
-		<View style={styles.separator} lightColor="" darkColor="" />
+	const toggleRegisterModal = () => {
+		setModalVisible(!isModalVisible);
+	};
 
-		<Button 
-			text="Register"
-			raised={true}  
-			primary={false}
-			onPress={toggleModal}
-			/> 
-        
+	return (
+			<View style={styles.container}>
+			<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+			<Text style={styles.title}> Moochin </Text>
+			<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+			<Button 
+				text="Login"
+				raised={true}  
+				primary={false}
+				onPress={toggleLoginModal}
+				/> 
+
+			<View style={styles.separator} lightColor="" darkColor="" />
+
+			<Button 
+				text="Register"
+				raised={true}  
+				primary={false}
+				onPress={toggleRegisterModal}
+				/> 
+			
 			<Modal 
 				isVisible={ isModalVisible }
 				onBackdropPress={() => setModalVisible(false)}
@@ -110,17 +117,18 @@ export default function LoginScreen() {
 					text="Exit" 
 					raised={true}  
 					primary={false}
-					onPress={toggleModal} 
+					// TODO: toggle both modals
+					onPress={(isLogin ? toggleLoginModal : toggleRegisterModal)} 
 					/>
 
 			</View>
 
 		</Modal>
-		
+			
 
 		</View>
-  );
-}
+	);
+	}	
 
 const styles = StyleSheet.create({
   container: {
