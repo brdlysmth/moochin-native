@@ -30,45 +30,86 @@ export default function LoginScreen() {
 
   return (
         <View style={styles.container}>
+        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <Text style={styles.title}> Moochin </Text>
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <Button 
+          text="Login"
+          raised={true}  
+          primary={false}
+          onPress={toggleModal}
+          /> 
+        
+            <Modal 
+          isVisible={ isModalVisible }
+          onBackdropPress={() => setModalVisible(false)}
+          onSwipeComplete={() => setModalVisible(false)}
+          swipeDirection="left"
+          >
+          <View style={styles.container}>
+            
+            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
-        <Formik
-                initialValues={{ email: '', password: '' }}
-                onSubmit={values => addBook(
-                    values.email,
-                    values.password,
-                    )
-                }
-                > 
-                {({
-                handleChange, handleBlur, handleSubmit, values
-                }) => (
+                <Text>
+                    The bliss of reading awaits...
+                </Text>
 
-                <View style={styles.formik}>
-                    <TextInput
-                    placeholder="Email"
-                    onChangeText={handleChange('email')}
-                    onBlur={handleBlur('email')}
-                    value={values.email}
-                    />
-                    <TextInput
-                    placeholder="Password"
-                    onChangeText={handleChange('password')}
-                    onBlur={handleBlur('password')}
-                    value={values.password}
-                    />
-                    <Button 
-                    onPress={handleSubmit} 
-                    text='Login'
-                    raised={true}  
-                    primary={false}
-                    />
-                </View>
-                )}
+                <Formik
+                    initialValues={{ email: '', password: '' }}
+                    onSubmit={values => addBook(
+                        values.email,
+                        values.password,
+                        )
+                    }
+                    > 
+                    {({
+                    handleChange, handleBlur, handleSubmit, values
+                    }) => (
 
-            </Formik>
+                        <View style={styles.formik}>
+
+                            <TextInput
+                                style={styles.formikBox}
+                                placeholder="Email"
+                                onChangeText={handleChange('email')}
+                                onBlur={handleBlur('email')}
+                                value={values.email}
+                                />
+
+                            <TextInput
+                                style={styles.formikBox}
+                                placeholder="Password"
+                                onChangeText={handleChange('password')}
+                                onBlur={handleBlur('password')}
+                                value={values.password}
+                                />
+
+                            <Button 
+                                onPress={handleSubmit} 
+                                text='Login'
+                                raised={true}  
+                                primary={false}
+                                />
+                            
+                            </View>
+                            )}
+
+                </Formik>
+
+            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
+            <Button 
+                text="Exit" 
+                raised={true}  
+                primary={false}
+                onPress={toggleModal} 
+                />
+
+          </View>
+
+      </Modal>
       
+
       </View>
   );
 }
@@ -89,12 +130,22 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   formik: {
-    height: 100,
-    width: 100,
-    margin: 15,
+    height: 250,
+    width: 200,
+    margin: 50,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'black',
     // padding: 100
+  },
+  formikBox: {
+    height: 35,
+    width: 75,
+    margin: 15,
+    marginBottom: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'black',
+    padding: 2
   },
 });
