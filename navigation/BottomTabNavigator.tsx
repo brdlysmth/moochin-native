@@ -7,10 +7,13 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import LibraryScreen from '../screens/LibraryScreen';
 import HomeScreen from '../screens/HomeScreen';
+import FriendsScreen from '../screens/FriendsScreen';
+
 import { 
   BottomTabParamList, 
   LibraryParamList,
   HomeParamList,
+  FriendsParamList,
  } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -21,23 +24,30 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
-      <BottomTab.Screen
-        name="Home"
-        component={HomeNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Library"
-        component={LibraryNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
-  );
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      >
+
+		<BottomTab.Screen
+			name="Home"
+			component={HomeNavigator}
+			options={{
+			tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />}}
+			/>
+
+		<BottomTab.Screen
+			name="Library"
+			component={LibraryNavigator}
+			options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} /> }}
+			/>
+
+		<BottomTab.Screen
+			name="Friends"
+			component={FriendsNavigator}
+			options={{tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} /> }}
+			/>	
+
+	</BottomTab.Navigator>
+	);
 }
 
 // You can explore the built-in icon families and icons on the web at:
@@ -75,5 +85,19 @@ function LibraryNavigator() {
         options={{ headerTitle: 'Moochin' }}
       />
     </LibraryStack.Navigator>
+  );
+}
+
+const FriendsStack = createStackNavigator<FriendsParamList>();
+
+function FriendsNavigator() {
+  return (
+    <FriendsStack.Navigator>
+      <FriendsStack.Screen
+        name="FriendsScreen"
+        component={FriendsScreen}
+        options={{ headerTitle: 'Moochin' }}
+      />
+    </FriendsStack.Navigator>
   );
 }

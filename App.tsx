@@ -21,7 +21,9 @@ export default function App() {
 
   } else {
 
-    if(loggedIn) {
+    //TODO: Implement login authentication functionality
+
+    if(!loggedIn) {
 
       return (
         <SafeAreaProvider>

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-material-ui';
 
-import LibraryScreenInfo from '../components/LibraryScreenInfo';
 import { Text, View } from '../components/Themed';
 import { db } from '../App';
 import Modal from 'react-native-modal';
