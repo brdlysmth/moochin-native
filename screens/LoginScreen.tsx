@@ -38,78 +38,87 @@ export default function LoginScreen() {
           primary={false}
           onPress={toggleModal}
           /> 
+
+		<View style={styles.separator} lightColor="" darkColor="" />
+
+		<Button 
+			text="Register"
+			raised={true}  
+			primary={false}
+			onPress={toggleModal}
+			/> 
         
-            <Modal 
-          isVisible={ isModalVisible }
-          onBackdropPress={() => setModalVisible(false)}
-          onSwipeComplete={() => setModalVisible(false)}
-          swipeDirection="left"
-          >
-          <View style={styles.container}>
-            
-            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+			<Modal 
+				isVisible={ isModalVisible }
+				onBackdropPress={() => setModalVisible(false)}
+				onSwipeComplete={() => setModalVisible(false)}
+				swipeDirection="left"
+				>
+			<View style={styles.container}>
+				
+				<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
-                <Text>
-                    The bliss of reading awaits...
-                </Text>
+					<Text>
+						The bliss of reading awaits...
+					</Text>
 
-                <Formik
-                    initialValues={{ email: '', password: '' }}
-                    onSubmit={values => addBook(
-                        values.email,
-                        values.password,
-                        )
-                    }
-                    > 
-                    {({
-                    handleChange, handleBlur, handleSubmit, values
-                    }) => (
+					<Formik
+						initialValues={{ email: '', password: '' }}
+						onSubmit={values => addBook(
+							values.email,
+							values.password,
+							)
+						}
+						> 
+						{({
+						handleChange, handleBlur, handleSubmit, values
+						}) => (
 
-                        <View style={styles.formik}>
+							<View style={styles.formik}>
 
-                            <TextInput
-                                style={styles.formikBox}
-                                placeholder="Email"
-                                onChangeText={handleChange('email')}
-                                onBlur={handleBlur('email')}
-                                value={values.email}
-                                />
+								<TextInput
+									style={styles.formikBox}
+									placeholder="Email"
+									onChangeText={handleChange('email')}
+									onBlur={handleBlur('email')}
+									value={values.email}
+									/>
 
-                            <TextInput
-                                style={styles.formikBox}
-                                placeholder="Password"
-                                onChangeText={handleChange('password')}
-                                onBlur={handleBlur('password')}
-                                value={values.password}
-                                />
+								<TextInput
+									style={styles.formikBox}
+									placeholder="Password"
+									onChangeText={handleChange('password')}
+									onBlur={handleBlur('password')}
+									value={values.password}
+									/>
 
-                            <Button 
-                                onPress={handleSubmit} 
-                                text='Login'
-                                raised={true}  
-                                primary={false}
-                                />
-                            
-                            </View>
-                            )}
+								<Button 
+									onPress={handleSubmit} 
+									text='Login'
+									raised={true}  
+									primary={false}
+									/>
+								
+								</View>
+								)}
 
-                </Formik>
+					</Formik>
 
-            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+				<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
-            <Button 
-                text="Exit" 
-                raised={true}  
-                primary={false}
-                onPress={toggleModal} 
-                />
+				<Button 
+					text="Exit" 
+					raised={true}  
+					primary={false}
+					onPress={toggleModal} 
+					/>
 
-          </View>
+			</View>
 
-      </Modal>
-      
+		</Modal>
+		
 
-      </View>
+		</View>
   );
 }
 

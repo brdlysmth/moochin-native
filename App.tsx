@@ -10,38 +10,39 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+	const isLoadingComplete = useCachedResources();
+	const colorScheme = useColorScheme();
 
-  const loggedIn = true;
+	// const loggedIn = true;
+	const loggedIn = false;
 
-  if (!isLoadingComplete) {
+	if (!isLoadingComplete) {
 
-    return null;
+	return null;
 
-  } else {
+	} else {
 
-    //TODO: Implement login authentication functionality
+		//TODO: Implement login authentication functionality
 
-    if(!loggedIn) {
+		if(!loggedIn) {
 
-      return (
-        <SafeAreaProvider>
-          <LoginScreen />
-        </SafeAreaProvider>
-      ) 
+		return (
+			<SafeAreaProvider>
+			<LoginScreen />
+			</SafeAreaProvider>
+		) 
 
-    } else {
+		} else {
 
-      return (
-        <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </SafeAreaProvider>
-      );
+		return (
+			<SafeAreaProvider>
+			<Navigation colorScheme={colorScheme} />
+			<StatusBar />
+			</SafeAreaProvider>
+		);
 
-    }
-  }
+		}
+	}
 }
 
 const app = Firebase.initializeApp(firebaseConfig);
