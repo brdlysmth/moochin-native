@@ -3,6 +3,7 @@
     "name": "moochin-native",
     "slug": "moochin-native",
     "version": "1.0.0",
+    "appKey": "moochin-native",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",

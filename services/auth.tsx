@@ -1,8 +1,6 @@
 import firebase from '@firebase/app';
 import '@firebase/auth';
 import { FirebaseAuth, Error } from '@firebase/auth-types';
-import AppRegistry from 'react-native';
-import App from '../App';
 
 import Firebase from '../config';
 
