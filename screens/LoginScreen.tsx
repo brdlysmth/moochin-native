@@ -7,13 +7,17 @@ import { db } from '../App';
 import Modal from 'react-native-modal';
 import { Formik } from 'formik';
 
-
+import { 
+	loginWithFirebase, 
+	registerWithFirebase,
+	logoutWithFirebase
+ } from '../services/auth';
 
 export default function LoginScreen() {
 
 	const [isModalVisible, setModalVisible] = React.useState(false);
 	// const [value, onChangeText] = React.useState('Book Name');
-	const [value, onChangeText] = React.useState('');
+	const [value, onChangeText ] = React.useState('');
 
 	const addBook = async ( name: string, title: string ) => {
 		await db.ref('/books').push({
@@ -24,6 +28,18 @@ export default function LoginScreen() {
 	}
 
 	let isLogin: boolean = false;
+
+	const loginUser = (email: string, password: string) => {
+		loginWithFirebase(email, password)
+	}
+
+	const registerUser = (email: string, password: string) => {
+		registerWithFirebase(email, password)
+	}
+
+	const logoutUser = () => {
+		logoutWithFirebase()
+	}
 
 	const toggleLoginModal = () => {
 		isLogin = !isLogin
@@ -71,7 +87,7 @@ export default function LoginScreen() {
 
 					<Formik
 						initialValues={{ email: '', password: '' }}
-						onSubmit={values => addBook(
+						onSubmit={values => loginUser(
 							values.email,
 							values.password,
 							)
