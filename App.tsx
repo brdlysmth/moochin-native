@@ -13,8 +13,8 @@ export default function App() {
 	const isLoadingComplete = useCachedResources();
 	const colorScheme = useColorScheme();
 
-	const loggedIn = true;
-	// const loggedIn = false;
+	// const loggedIn = true;
+	const loggedIn = false;
 
 	if (!isLoadingComplete) {
 

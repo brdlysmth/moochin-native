@@ -10,6 +10,10 @@ export const logout = () =>
 export const login = (email: string, pw: string) =>
   firebaseAuth.signInWithEmailAndPassword(email, pw);
 
+// export const registerUserInFirebase = ( email: string, pw: string ) => {
+//     firebaseAuth.createUserWithEmailAndPassword(email, pw);
+// }
+
 export const loginErrorToText = (err: Error) => {
   switch (err.code) {
     case 'auth/invalid-email':

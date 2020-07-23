@@ -7,6 +7,8 @@ import { db } from '../App';
 import Modal from 'react-native-modal';
 import { Formik } from 'formik';
 
+// import { login, registerUserInFirebase } from '../services/auth';
+import { login } from '../services/auth';
 
 
 export default function LoginScreen() {
@@ -22,6 +24,14 @@ export default function LoginScreen() {
 			title: title,
 		})
 	}
+
+	const loginWithEmailAndPassword = async ( email: string, pw: string ) => {
+		login(email, pw)
+	}
+
+	// const registerUser = async (email: string, pw: string ) => {
+	// 	registerUserInFirebase(email, pw)
+	// }
 
 	let isLogin: boolean = false;
 
@@ -71,7 +81,7 @@ export default function LoginScreen() {
 
 					<Formik
 						initialValues={{ email: '', password: '' }}
-						onSubmit={values => addBook(
+						onSubmit={values => loginWithEmailAndPassword(
 							values.email,
 							values.password,
 							)
