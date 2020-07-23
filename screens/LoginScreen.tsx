@@ -8,10 +8,13 @@ import Modal from 'react-native-modal';
 import { Formik } from 'formik';
 import { loginUserInFirebase, registerUserInFirebase } from '../services/auth';
 
+// import { login, registerUserInFirebase } from '../services/auth';
+import { login } from '../services/auth';
 
 
 export default function LoginScreen() {
 
+<<<<<<< HEAD
   const [isModalVisible, setModalVisible] = React.useState(false);
   // const [value, onChangeText] = React.useState('Book Name');
   const [value, onChangeText] = React.useState('');
@@ -57,6 +60,60 @@ export default function LoginScreen() {
 			onPress={toggleModal}
 			/> 
         
+=======
+	const [isModalVisible, setModalVisible] = React.useState(false);
+	// const [value, onChangeText] = React.useState('Book Name');
+	const [value, onChangeText] = React.useState('');
+
+	const addBook = async ( name: string, title: string ) => {
+		await db.ref('/books').push({
+			new: 'true',
+			name: name,
+			title: title,
+		})
+	}
+
+	const loginWithEmailAndPassword = async ( email: string, pw: string ) => {
+		login(email, pw)
+	}
+
+	// const registerUser = async (email: string, pw: string ) => {
+	// 	registerUserInFirebase(email, pw)
+	// }
+
+	let isLogin: boolean = false;
+
+	const toggleLoginModal = () => {
+		isLogin = !isLogin
+		setModalVisible(!isModalVisible);
+	};
+
+	const toggleRegisterModal = () => {
+		setModalVisible(!isModalVisible);
+	};
+
+	return (
+			<View style={styles.container}>
+			<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+			<Text style={styles.title}> Moochin </Text>
+			<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+			<Button 
+				text="Login"
+				raised={true}  
+				primary={false}
+				onPress={toggleLoginModal}
+				/> 
+
+			<View style={styles.separator} lightColor="" darkColor="" />
+
+			<Button 
+				text="Register"
+				raised={true}  
+				primary={false}
+				onPress={toggleRegisterModal}
+				/> 
+			
+>>>>>>> f9fc649caef58ee8764b6afe5845ad48d0733b53
 			<Modal 
 				isVisible={ isModalVisible }
 				onBackdropPress={() => setModalVisible(false)}
@@ -73,7 +130,11 @@ export default function LoginScreen() {
 
 					<Formik
 						initialValues={{ email: '', password: '' }}
+<<<<<<< HEAD
 						onSubmit={values => loginUser(
+=======
+						onSubmit={values => loginWithEmailAndPassword(
+>>>>>>> f9fc649caef58ee8764b6afe5845ad48d0733b53
 							values.email,
 							values.password,
 							)
@@ -119,17 +180,18 @@ export default function LoginScreen() {
 					text="Exit" 
 					raised={true}  
 					primary={false}
-					onPress={toggleModal} 
+					// TODO: toggle both modals
+					onPress={(isLogin ? toggleLoginModal : toggleRegisterModal)} 
 					/>
 
 			</View>
 
 		</Modal>
-		
+			
 
 		</View>
-  );
-}
+	);
+	}	
 
 const styles = StyleSheet.create({
   container: {

@@ -7,6 +7,7 @@ export const firebaseAuth: FirebaseAuth = (firebase as any).auth();
 export const logout = () =>
   firebaseAuth.signOut();
 
+<<<<<<< HEAD
 export const loginUserInFirebase = (email: string, pw: string) =>
   firebaseAuth.signInWithEmailAndPassword(email, pw);
 
