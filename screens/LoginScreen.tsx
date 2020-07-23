@@ -6,6 +6,7 @@ import { Text, View } from '../components/Themed';
 import { db } from '../App';
 import Modal from 'react-native-modal';
 import { Formik } from 'formik';
+import { loginUserInFirebase, registerUserInFirebase } from '../services/auth';
 
 
 
@@ -22,6 +23,14 @@ export default function LoginScreen() {
           title: title,
       })
   }
+
+  const registerUser = (email: any, password: any) => {
+	  registerUserInFirebase(email, password)
+  }
+
+  const loginUser = (email: any, password: any) => {
+	loginUserInFirebase(email, password)
+}
 
   const toggleModal = () => {
       setModalVisible(!isModalVisible);
@@ -64,7 +73,7 @@ export default function LoginScreen() {
 
 					<Formik
 						initialValues={{ email: '', password: '' }}
-						onSubmit={values => addBook(
+						onSubmit={values => loginUser(
 							values.email,
 							values.password,
 							)

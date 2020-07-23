@@ -8,13 +8,23 @@ import LoginScreen from './screens/LoginScreen';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import { firebaseAuth } from './services/auth';
 
 export default function App() {
 	const isLoadingComplete = useCachedResources();
 	const colorScheme = useColorScheme();
 
+	let loggedIn: boolean = false;
+
+	firebaseAuth.onAuthStateChanged((user) => {
+		if (user) {
+			loggedIn = true;
+		} else {
+			loggedIn = false;
+		}
+	})
 	// const loggedIn = true;
-	const loggedIn = false;
+	// const loggedIn = false;
 
 	if (!isLoadingComplete) {
 
