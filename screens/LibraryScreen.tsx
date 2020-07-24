@@ -1,13 +1,18 @@
 import * as React from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { SnapshotViewIOS, StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-material-ui';
 
 import LibraryScreenInfo from '../components/LibraryScreenInfo';
+import LibraryList from '../components/LibraryList';
 import { Text, View } from '../components/Themed';
 import { db } from '../App';
 import Modal from 'react-native-modal';
 import { Formik } from 'formik';
 
+
+// const libraryListRef = db.ref('/books').once('value')
+// const libraryList = libraryListRef
+const libraryList = 'library list'
 
 
 export default function LibraryScreen() {
@@ -41,7 +46,14 @@ export default function LibraryScreen() {
       <View style={styles.container}>
       <Text style={styles.title}> Library </Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <LibraryScreenInfo path="/screens/LibraryScreen.tsx" />
+      <LibraryScreenInfo 
+        path="/screens/LibraryScreen.tsx" 
+        />
+      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      <LibraryList 
+        // path="/screens/LibraryScreen.tsx" 
+        libraryList={ libraryList }
+        />
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Button 
           text="Add Book"

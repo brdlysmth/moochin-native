@@ -8,6 +8,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { firebaseAuth } from './services/auth';
+import { AppRegistry } from 'react-native';
 
 export default function App() {
 	const isLoadingComplete = useCachedResources();
@@ -57,4 +58,4 @@ export default function App() {
 // const app = Firebase.initializeApp(firebaseConfig);
 export const db = Firebase.database();
 
-// AppRegistry.AppRegistry.registerComponent('moochin-native', () => App)
+AppRegistry.registerComponent('moochin-native', () => App)
